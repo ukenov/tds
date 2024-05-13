@@ -1,6 +1,22 @@
-# Getting Started with Create React App
+# User Management Web Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is a web application built with React.js and TypeScript for managing a list of users. It allows users to view, add, edit, and delete user records.
+
+## Features
+
+1. **User List**: Displays a list of users in a table format with columns for ID, First Name, Last Name, Email, Skills, and Registration Date.
+
+2. **Add User**: Provides a form for adding a new user with fields for First Name, Last Name, Email, and Skills. Users can add multiple skills by entering them as a comma-separated list.
+
+3. **Edit User**: Allows users to edit existing user records. Prepopulates the form with the current user data for easy editing.
+
+4. **Delete User**: Enables users to delete a user record by their ID.
+
+## Tools and Libraries
+
+- **API**: Data for users is fetched from [JSONPlaceholder](https://my-json-server.typicode.com/ukenov/db/users)
+
+- **Styling**: Tailwind CSS is used for styling the user interface.
 
 ## Available Scripts
 
@@ -28,19 +44,3 @@ The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).

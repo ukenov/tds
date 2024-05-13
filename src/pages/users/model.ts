@@ -1,4 +1,4 @@
-interface User {
+export interface User {
   id: number;
   firstname: string;
   lastname: string;
@@ -7,5 +7,9 @@ interface User {
   dateOfRegistration: Date;
 }
 
-export default User;
+export interface ModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  children: any;
+}
   
