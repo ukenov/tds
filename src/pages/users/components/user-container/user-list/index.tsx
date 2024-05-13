@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import useGetUsers from 'pages/users/hooks/use-get-users';
 import useDeleteUser from 'pages/users/hooks/use-delete-user';
 import Pagination from '../../pagination';
 
-const UserList: React.FC = () => {
+const UserList = () => {
   const { users, loading: getUsersLoading, error: getUsersError, totalPages: getUsersTotalPages, fetchUsers } = useGetUsers();
   const { deleteUser, loading: deleteUserLoading, error: deleteUserError  } = useDeleteUser();
   const [currentPage, setCurrentPage] = useState(1);

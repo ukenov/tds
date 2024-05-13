@@ -7,11 +7,10 @@ import DatePicker from "react-datepicker";
 import 'react-datepicker/dist/react-datepicker.css'
 
 interface EditUserProps {
-  onSubmit: () => void;
   userId: any;
 }
 
-const EditUser: React.FC<EditUserProps> = ({ onSubmit, userId }) => {
+const EditUser: React.FC<EditUserProps> = ({ userId }) => {
     const { control, register, handleSubmit, formState: { errors }, setValue } = useForm<User>();
     const { editUser, loading, error } = useEditUser();
     const { user, loading: getUserLoading, error: getUserError } = useGetUser(userId);
@@ -32,7 +31,6 @@ const EditUser: React.FC<EditUserProps> = ({ onSubmit, userId }) => {
   const onSubmitHandler = handleSubmit(async (data: User) => {
     data.skills = skills;
     await editUser(userId, data);
-    onSubmit();
   });
 
   if (getUserLoading) {
@@ -141,20 +139,23 @@ const EditUser: React.FC<EditUserProps> = ({ onSubmit, userId }) => {
         <Controller
           control={control}
           name='dateOfRegistration'
+          rules={{ required: 'Registration date is required' }}
           render={({ field }) => (
-            <DatePicker
-              selected={field.value}
-              onChange={(date: Date | null) => field.onChange(date)}
-              showTimeSelect
-              timeFormat="HH:mm"
-              timeIntervals={15}
-              timeCaption="Time"
-              dateFormat="MMMM d, yyyy h:mm aa"
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="registrationDate"
-              placeholderText="Select Registration Date & Time"
-              disabled={loading}
-            />
+            <div>
+              <DatePicker
+                selected={field.value}
+                onChange={(date: Date | null) => field.onChange(date)}
+                showTimeSelect
+                timeFormat="HH:mm"
+                timeIntervals={15}
+                timeCaption="Time"
+                dateFormat="MMMM d, yyyy h:mm aa"
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                id="registrationDate"
+                placeholderText="Select Registration Date & Time"
+              />
+              <div>{errors.dateOfRegistration && <span className="text-red-500 text-xs">{errors.dateOfRegistration.message}</span>}</div>
+            </div>
           )}
         />
       </div>

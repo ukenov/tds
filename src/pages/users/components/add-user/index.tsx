@@ -1,15 +1,11 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { User } from 'pages/users/model'
 import useAddUser from 'pages/users/hooks/use-add-user'
 import DatePicker from "react-datepicker";
 import 'react-datepicker/dist/react-datepicker.css'
 
-interface FormProps {
-  onSubmit: (user: User) => void;
-}
-
-const AddUser: React.FC<FormProps> = ({ onSubmit }) => {
+const AddUser = () => {
   const { control, register, handleSubmit, formState: { errors } } = useForm<User>();
   const { addUser, loading, error } = useAddUser();
   const [skills, setSkills] = useState<string[]>([]);
@@ -18,7 +14,6 @@ const AddUser: React.FC<FormProps> = ({ onSubmit }) => {
   const onSubmitHandler = handleSubmit(async (data: User) => {
     data.skills = skills;
     await addUser(data);
-    onSubmit(data);
   })
 
   if (error) {
@@ -118,21 +113,24 @@ const AddUser: React.FC<FormProps> = ({ onSubmit }) => {
         <Controller
           control={control}
           name='dateOfRegistration'
+          rules={{ required: 'Registration date is required' }}
           render={({ field }) => 
             (
-            <DatePicker
-              selected={field.value}
-              onChange={(date: Date | null) => field.onChange(date)}
-              showTimeSelect
-              timeFormat="HH:mm"
-              timeIntervals={15}
-              timeCaption="Time"
-              dateFormat="MMMM d, yyyy h:mm aa"
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="registrationDate"
-              placeholderText="Select Registration Date & Time"
-              disabled={loading}
-            />
+              <div>
+                <DatePicker
+                  selected={field.value}
+                  onChange={(date: Date | null) => field.onChange(date)}
+                  showTimeSelect
+                  timeFormat="HH:mm"
+                  timeIntervals={15}
+                  timeCaption="Time"
+                  dateFormat="MMMM d, yyyy h:mm aa"
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  id="registrationDate"
+                  placeholderText="Select Registration Date & Time"
+                />
+                <div>{errors.dateOfRegistration && <span className="text-red-500 text-xs">{errors.dateOfRegistration.message}</span>}</div>
+              </div>
           )}
         />
       </div>

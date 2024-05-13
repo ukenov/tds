@@ -12,4 +12,10 @@ export interface ModalProps {
   onClose: () => void;
   children: any;
 }
+
+export interface PaginationProps {
+  currentPage: number;
+  totalPages: number;
+  onPageChange: (page: number) => void;
+}
   
